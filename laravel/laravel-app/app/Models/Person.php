@@ -10,11 +10,14 @@ class Person extends Model
 {
     use HasFactory;
 
+    protected $table = 'persons';
+
     protected $fillable = [
         'display_name',
         'phone_number',
         'address',
         'avatar',
+        'user_id'
     ];
 
     protected $casts = [
