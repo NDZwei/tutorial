@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('persons', function (Blueprint $table) {
             $table->id();
-            $table->string('display_name');
+            $table->string('display_name')->nullable();
             $table->timestamp('birthdate')->nullable();
             $table->string('phone_number')->nullable();
             $table->string('address')->nullable();
@@ -21,6 +21,7 @@ return new class extends Migration
 
             $table->unsignedBigInteger('user_id')->nullable();
             $table->foreign('user_id')->references('id')->on('users')->onDelete('cascade');
+            $table->timestamps();
         });
     }
 
@@ -29,6 +30,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('people');
+        Schema::dropIfExists('persons');
     }
 };
