@@ -1,5 +1,6 @@
 package com.ndz.app.config;
 
+import com.ndz.app.service.SetupDataService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -17,10 +18,11 @@ import javax.annotation.Resource;
 */
 @Component
 public class ApplicationStartupListener implements ApplicationListener<ContextRefreshedEvent>, InitializingBean {
-    private static final Logger logger = LoggerFactory.getLogger(ApplicationStartupListener.class);
-
     @Resource
     private Environment env;
+
+    @Resource
+    private SetupDataService setupDataService;
 
     @Override
     public void afterPropertiesSet() throws Exception {
@@ -29,6 +31,6 @@ public class ApplicationStartupListener implements ApplicationListener<ContextRe
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
-
+        setupDataService.createData();
     }
 }

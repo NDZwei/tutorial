@@ -7,8 +7,9 @@ package com.ndz.app.utils;
 */
 public class EnumClass {
     public enum RoleEnum {
-        ROLE_ADMIN("ROLE_ADMIN", "role admin"),
-        ROLE_USER("ROLE_USER", "role user");
+        ROLE_ADMIN("ROLE_ADMIN", "Role admin"),
+        ROLE_INSTRUCTOR("ROLE_INSTRUCTOR", "Role instructor"),
+        ROLE_USER("ROLE_USER", "Role user");
         private String name;
         private String description;
 

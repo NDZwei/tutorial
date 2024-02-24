@@ -1,6 +1,7 @@
 package com.ndz.app.dto;
 
 import com.ndz.app.entity.Role;
+import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
@@ -13,6 +14,7 @@ import lombok.Setter;
 @Getter
 @Setter
 @NoArgsConstructor
+@AllArgsConstructor
 public class RoleDto extends BaseDto {
     private String name;
     private String description;

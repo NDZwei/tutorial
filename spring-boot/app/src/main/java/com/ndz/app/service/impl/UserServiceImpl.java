@@ -1,36 +1,26 @@
 package com.ndz.app.service.impl;
 
-import com.ndz.app.dto.BaseSearch;
 import com.ndz.app.dto.RoleDto;
 import com.ndz.app.dto.UserDto;
 import com.ndz.app.entity.Role;
 import com.ndz.app.entity.User;
 import com.ndz.app.repository.RoleRepository;
 import com.ndz.app.repository.UserRepository;
-import com.ndz.app.service.RoleService;
 import com.ndz.app.service.UserService;
 import com.ndz.app.utils.NDZUtils;
-import org.springframework.data.domain.Page;
-import org.springframework.data.domain.PageImpl;
-import org.springframework.data.domain.PageRequest;
-import org.springframework.data.domain.Pageable;
-import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
 import org.springframework.security.core.userdetails.UsernameNotFoundException;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.util.CollectionUtils;
-import org.springframework.util.StringUtils;
+import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.Query;
-import java.util.ArrayList;
-import java.util.HashSet;
-import java.util.List;
-import java.util.Set;
+import java.util.*;
 import java.util.stream.Collectors;
 
 /*
@@ -52,6 +42,15 @@ public class UserServiceImpl implements UserDetailsService, UserService {
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
+        User user = repository.getUserByUsername(username);
+        if(ObjectUtils.isEmpty(user)) {
+            throw new UsernameNotFoundException("User not found");
+        }
+        Collection<SimpleGrantedAuthority> authorities = new ArrayList<>();
+        if(!CollectionUtils.isEmpty(user.getRoles())) {
+            user.getRoles().forEach(role -> authorities.add(new SimpleGrantedAuthority(role.getName())));
+            return new org.springframework.security.core.userdetails.User(user.getUsername(), user.getPassword(), authorities);
+        }
         return null;
     }
 
@@ -87,6 +86,14 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         }
         User user = null;
         boolean isNew = false;
+        Boolean isExitsUsername = this.checkUsername(dto.getUsername());
+        if(isExitsUsername) {
+            return null;
+        }
+        Boolean isExitsEmail = this.checkEmail(dto.getEmail());
+        if(isExitsEmail) {
+            return null;
+        }
         if(dto.getId() != null) {
             user = repository.findById(dto.getId()).orElse(null);
         }
@@ -95,17 +102,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             isNew = true;
         }
         if(isNew && dto.getPassword() != null && dto.getConfirmPassword() != null
-                && NDZUtils.matchesPassword(dto.getPassword(), dto.getConfirmPassword())) {
+                && dto.getPassword().equals(dto.getConfirmPassword())) {
             user.setPassword(NDZUtils.getHashPassword(dto.getPassword()));
         }
-        Boolean isExitsUsername = this.checkUsername(dto.getUsername());
-        if(!isExitsUsername) {
-            user.setUsername(dto.getUsername());
-        }
-        Boolean isExitsEmail = this.checkEmail(dto.getEmail());
-        if(!isExitsEmail) {
-            user.setEmail(dto.getEmail());
-        }
+        user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
         Set<Role> roles = new HashSet<>();
         if(!CollectionUtils.isEmpty(dto.getRoles())) {
             Role role = null;
@@ -191,8 +192,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public Boolean changePassword(UserDto dto) {
         User user = repository.findById(dto.getId()).orElse(null);
         if(user != null && dto.getOldPassword() != null && dto.getPassword() != null && dto.getConfirmPassword() != null
-                && NDZUtils.matchesPassword(user.getPassword(), dto.getOldPassword())
-                && NDZUtils.matchesPassword(dto.getPassword(), dto.getConfirmPassword())) {
+                && dto.getPassword().equals(dto.getConfirmPassword())
+                && NDZUtils.matchesPassword(user.getPassword(), dto.getOldPassword())) {
             user.setPassword(NDZUtils.getHashPassword(dto.getPassword()));
             repository.save(user);
             return true;
