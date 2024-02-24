@@ -14,6 +14,10 @@ import java.text.SimpleDateFormat;
 public class NDZUtils {
     public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
 
+    public static final String SECRET_KEY = "secret-key-ndz-course";
+    public static final Integer TIME_OUT_TOKEN = 12;
+    public static final Integer TIME_OUT_REFRESH_TOKEN = 24;
+
     public static String getHashPassword(String password) {
         PasswordEncoder passwordEncoder = new BCryptPasswordEncoder();
         return passwordEncoder.encode(password);
