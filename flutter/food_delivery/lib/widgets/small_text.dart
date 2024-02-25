@@ -17,6 +17,7 @@ class SmallText extends StatelessWidget {
   Widget build(BuildContext context) {
     return Text(
       text,
+      textAlign: TextAlign.justify,
       style: TextStyle(
         color: color,
         fontSize: size,
