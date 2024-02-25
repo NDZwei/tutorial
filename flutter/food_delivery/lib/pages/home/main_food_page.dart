@@ -1,10 +1,10 @@
-
 import 'package:flutter/material.dart';
-import 'package:food_delivery/home/food_page_body.dart';
 import 'package:food_delivery/utils/colors.dart';
 import 'package:food_delivery/widgets/small_text.dart';
 
-import '../widgets/big_text.dart';
+import '../../widgets/big_text.dart';
+import 'food_page_body.dart';
+
 
 class MainFoodPage extends StatefulWidget {
   const MainFoodPage({super.key});
@@ -19,6 +19,7 @@ class _MainFoodPageState extends State<MainFoodPage> {
     return Scaffold(
       body: Column(
         children: [
+          // header
           Container(
             child: Container(
               margin: const EdgeInsets.only(top: 35, bottom: 15),
@@ -28,10 +29,16 @@ class _MainFoodPageState extends State<MainFoodPage> {
                 children: [
                   Column(
                     children: [
-                      BigText(text: "TP Hà Nội", color: AppColor.mainColor,),
+                      BigText(
+                        text: "TP Hà Nội",
+                        color: AppColor.mainColor,
+                      ),
                       Row(
                         children: [
-                          SmallText(text: "Xuân Đỉnh", color: Colors.black54,),
+                          SmallText(
+                            text: "Xuân Đỉnh",
+                            color: Colors.black54,
+                          ),
                           const Icon(Icons.arrow_drop_down_rounded)
                         ],
                       )
@@ -41,18 +48,24 @@ class _MainFoodPageState extends State<MainFoodPage> {
                     child: Container(
                       width: 45,
                       height: 45,
-                      child: Icon(Icons.search, color: Colors.white,),
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.circular(15),
-                        color: AppColor.mainColor
+                      child: Icon(
+                        Icons.search,
+                        color: Colors.white,
                       ),
+                      decoration: BoxDecoration(
+                          borderRadius: BorderRadius.circular(15),
+                          color: AppColor.mainColor),
                     ),
                   )
                 ],
               ),
             ),
           ),
-          FoodPageBody(),
+          // body page
+          Expanded(
+              child: SingleChildScrollView(
+            child: FoodPageBody(),
+          ))
         ],
       ),
     );
