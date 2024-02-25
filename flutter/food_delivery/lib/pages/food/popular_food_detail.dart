@@ -63,7 +63,7 @@ class PopularFoodDetail extends StatelessWidget {
                   const SizedBox(height: 20,),
                   BigText(text: "Mô tả"),
                   const SizedBox(height: 15,),
-                  Expanded(
+                  const Expanded(
                     child: SingleChildScrollView(
                       child: ExpandText(text: "Quán bánh đa trộn Ngõ Huyện đã trở thành "
                           "một cái tên quen thuộc trong lòng người dân Hà Nội. Dù chỉ là "

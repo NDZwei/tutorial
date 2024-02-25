@@ -33,9 +33,9 @@ class _ExpandTextState extends State<ExpandText> {
   @override
   Widget build(BuildContext context) {
     return Container(
-      child: secondHalf.isEmpty ? SmallText(text: firstHalf, size: 16, height: 1.5,) : Column(
+      child: secondHalf.isEmpty ? SmallText(text: firstHalf, size: 16, height: 1.5, color: AppColor.paraColor,) : Column(
         children: [
-          SmallText(text: hiddenText ? (firstHalf + "...") : (firstHalf+secondHalf), size: 16, height: 1.5),
+          SmallText(text: hiddenText ? (firstHalf + "...") : (firstHalf+secondHalf), size: 16, height: 1.5, color: AppColor.paraColor),
           InkWell(
             onTap: () {
               setState(() {
@@ -44,7 +44,7 @@ class _ExpandTextState extends State<ExpandText> {
             },
             child: Row(
               children: [
-                SmallText(text: hiddenText ? "Xem thêm" : "Ẩn bớt", color: AppColor.mainColor, size: 16, height: 1.5),
+                SmallText(text: hiddenText ? "Xem thêm" : "Ẩn bớt", size: 16, height: 1.5, color: AppColor.paraColor),
                 Icon(hiddenText ? Icons.arrow_drop_down : Icons.arrow_drop_up, color: AppColor.mainColor,)
               ],
             ),
