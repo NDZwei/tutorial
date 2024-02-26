@@ -6,6 +6,7 @@ import com.ndz.app.entity.Role;
 import com.ndz.app.entity.User;
 import com.ndz.app.repository.RoleRepository;
 import com.ndz.app.repository.UserRepository;
+import com.ndz.app.service.SendMailService;
 import com.ndz.app.service.UserService;
 import com.ndz.app.utils.NDZUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
@@ -37,8 +38,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     @Resource
     private RoleRepository roleRepository;
 
-    @PersistenceContext
-    private EntityManager manager;
+    @Resource
+    private SendMailService sendMailService;
 
     @Override
     public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
@@ -77,6 +78,34 @@ public class UserServiceImpl implements UserDetailsService, UserService {
     public UserDto getByEmail(String email) {
         User user = repository.getUserByEmail(email);
         return user != null ? new UserDto(user) : null;
+    }
+
+    @Override
+    public UserDto register(UserDto dto) {
+        if(dto == null) {
+            return null;
+        }
+        Boolean isExitsUsername = this.checkUsername(dto.getUsername());
+        if(isExitsUsername) {
+            return null;
+        }
+        Boolean isExitsEmail = this.checkEmail(dto.getEmail());
+        if(isExitsEmail) {
+            return null;
+        }
+        User user = new User();
+        if(dto.getPassword() != null && dto.getConfirmPassword() != null
+                && dto.getPassword().equals(dto.getConfirmPassword())) {
+            user.setPassword(NDZUtils.getHashPassword(dto.getPassword()));
+        } else {
+            return null;
+        }
+        user.setUsername(dto.getUsername());
+        user.setEmail(dto.getEmail());
+        // send mail active
+
+        user = repository.save(user);
+        return new UserDto(user);
     }
 
     @Override
@@ -129,6 +158,11 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         }
         user = repository.save(user);
         return new UserDto(user);
+    }
+
+    @Override
+    public Boolean activeMail(UUID id) {
+        return null;
     }
 
     @Override

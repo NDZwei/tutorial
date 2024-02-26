@@ -27,14 +27,22 @@ public class RoleController extends BaseController {
 
     @GetMapping(value = "/all")
     public BaseResponse getAll() {
-        List<RoleDto> data = service.getAll();
-        return getResponse200(data);
+        try {
+            List<RoleDto> data = service.getAll();
+            return getResponse200(data);
+        } catch (Exception e) {
+            return getResponse500(e.getMessage());
+        }
     }
 
     @GetMapping(value = "/{id}")
     public BaseResponse getById(@PathVariable("id") Long id) {
-        RoleDto data = service.getById(id);
-        return getResponse200(data);
+        try {
+            RoleDto data = service.getById(id);
+            return getResponse200(data);
+        } catch (Exception e) {
+            return getResponse500(e.getMessage());
+        }
     }
 
     @PostMapping(value = "/save")

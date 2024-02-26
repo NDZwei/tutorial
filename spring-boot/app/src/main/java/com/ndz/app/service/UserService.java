@@ -3,6 +3,7 @@ package com.ndz.app.service;
 import com.ndz.app.dto.UserDto;
 
 import java.util.List;
+import java.util.UUID;
 
 /*
     author: NMDuc
@@ -18,7 +19,11 @@ public interface UserService {
 
     UserDto getByEmail(String email);
 
+    UserDto register(UserDto dto);
+
     UserDto saveUser(UserDto dto);
+
+    Boolean activeMail(UUID id);
 
     Boolean delete(Long id);
 

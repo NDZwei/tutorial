@@ -26,14 +26,22 @@ public class UserController extends BaseController {
 
     @GetMapping(value = "/all")
     public BaseResponse getAll() {
-        List<UserDto> data = service.getAll();
-        return getResponse200(data);
+        try {
+            List<UserDto> data = service.getAll();
+            return getResponse200(data);
+        } catch (Exception e) {
+            return getResponse500(e.getMessage());
+        }
     }
 
     @GetMapping(value = "/{id}")
     public BaseResponse getById(@PathVariable("id") Long id) {
-        UserDto data = service.getById(id);
-        return getResponse200(data);
+        try {
+            UserDto data = service.getById(id);
+            return getResponse200(data);
+        } catch (Exception e) {
+            return getResponse500(e.getMessage());
+        }
     }
 
     @PostMapping(value = "/save")
@@ -68,21 +76,41 @@ public class UserController extends BaseController {
 
     @GetMapping(value = "/check-username")
     public Boolean checkUsername(@RequestParam String username) {
-        return service.checkUsername(username);
+        try {
+            return service.checkUsername(username);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return false;
+        }
     }
 
     @GetMapping(value = "/check-email")
     public Boolean checkEmail(@RequestParam String email) {
-        return service.checkEmail(email);
+        try {
+            return service.checkEmail(email);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return false;
+        }
     }
 
     @GetMapping(value = "/check-username-and-email")
     public Boolean checkUserAndEmail(@RequestParam String username, @RequestParam String email) {
-        return service.checkUserAndEmail(username, email);
+        try {
+            return service.checkUserAndEmail(username, email);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return false;
+        }
     }
 
     @PostMapping(value = "/change-password")
     public Boolean changePassword(@RequestBody UserDto dto) {
-        return service.changePassword(dto);
+        try {
+            return service.changePassword(dto);
+        } catch (Exception e) {
+            logger.error(e.getMessage());
+            return false;
+        }
     }
 }

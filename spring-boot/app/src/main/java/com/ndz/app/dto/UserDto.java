@@ -23,6 +23,7 @@ public class UserDto extends BaseDto {
     private String confirmPassword;
     private String oldPassword;
     private String email;
+    private Boolean isActive;
     private List<RoleDto> roles = new ArrayList<>();
 
     public UserDto(User user) {

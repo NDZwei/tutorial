@@ -47,14 +47,14 @@ public abstract class BaseController {
 
     protected BaseResponse getResponse500() {
         BaseResponse rs = new BaseResponse();
-        rs.setStatus(HttpStatus.BAD_REQUEST.value());
+        rs.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         rs.setMessage(HttpStatus.INTERNAL_SERVER_ERROR.name());
         return rs;
     }
 
     protected BaseResponse getResponse500(String message) {
         BaseResponse rs = new BaseResponse();
-        rs.setStatus(HttpStatus.BAD_REQUEST.value());
+        rs.setStatus(HttpStatus.INTERNAL_SERVER_ERROR.value());
         rs.setMessage(message);
         return rs;
     }

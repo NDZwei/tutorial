@@ -16,4 +16,8 @@ public class BaseSearch {
     private Integer pageIndex;
     private Integer pageSize;
     private String textSearch;
+    private String email;
+    private String emailType;
+    private String statusSendMail;
+    private Integer numberRecord;
 }

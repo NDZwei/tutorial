@@ -30,6 +30,9 @@ public class User extends BaseEntity {
     @Column(name = "email", nullable = false, unique = true, length = 100)
     private String email;
 
+    @Column(name = "is_active")
+    private Boolean isActive = false;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     @JoinTable(name = "tbl_user_role",

@@ -25,5 +25,13 @@ public class EnumClass {
         public String getDescription() {
             return description;
         }
+    };
+
+    public enum EmailType {
+        REGISTER, FORGOT_PASSWORD, NOTICE
+    }
+
+    public enum STATUS_SEND {
+        SUCCESS, ERROR,
     }
 }

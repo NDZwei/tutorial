@@ -13,7 +13,7 @@ import java.text.SimpleDateFormat;
 */
 public class NDZUtils {
     public static final SimpleDateFormat dateFormat = new SimpleDateFormat("dd-MM-yyyy");
-
+    public static String IMAGE_PATH = "";
     public static final String SECRET_KEY = "secret-key-ndz-course";
     public static final Integer TIME_OUT_TOKEN = 12;
     public static final Integer TIME_OUT_REFRESH_TOKEN = 24;

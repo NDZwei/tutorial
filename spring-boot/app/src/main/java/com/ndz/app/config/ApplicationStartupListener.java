@@ -1,6 +1,7 @@
 package com.ndz.app.config;
 
 import com.ndz.app.service.SetupDataService;
+import com.ndz.app.utils.NDZUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.InitializingBean;
@@ -31,6 +32,7 @@ public class ApplicationStartupListener implements ApplicationListener<ContextRe
 
     @Override
     public void onApplicationEvent(ContextRefreshedEvent event) {
+        NDZUtils.IMAGE_PATH = env.getProperty("file.image_path");
         setupDataService.createData();
     }
 }

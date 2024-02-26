@@ -26,6 +26,7 @@ public class EntityAuditListener {
     @PrePersist
     public void beforePrePersist(AuditableEntity auditableEntity) {
         auditableEntity.setCreatedAt(new Date());
+        auditableEntity.setUpdatedAt(new Date());
         auditableEntity.setCreatedBy(getUsername());
     }
 
