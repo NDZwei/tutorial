@@ -22,6 +22,7 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.security.KeyFactory;
@@ -59,8 +60,8 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
     @Override
     protected void successfulAuthentication(HttpServletRequest request, HttpServletResponse response, FilterChain chain, Authentication authentication) throws IOException {
         User user = (User) authentication.getPrincipal();
-        PublicKey publicKey = loadPublicKey();
-        PrivateKey privateKey = loadPrivateKey();
+        PublicKey publicKey = this.loadPublicKeyFromResource();
+        PrivateKey privateKey = this.loadPrivateKeyFromResource();
         Algorithm algorithm = Algorithm.RSA512((RSAPublicKey) publicKey, (RSAPrivateKey) privateKey);
         String token = JWT.create()
                 .withSubject(user.getUsername())
@@ -81,25 +82,38 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         new ObjectMapper().writeValue(response.getOutputStream(), result);
     }
 
-    private PublicKey loadPublicKey() throws IOException {
+    private PublicKey loadPublicKeyFromResource() throws IOException {
         try (InputStream inputStream = new ClassPathResource("keystore/public_key.pem").getInputStream()) {
             byte[] keyBytes = inputStream.readAllBytes();
-            X509EncodedKeySpec spec = new X509EncodedKeySpec(keyBytes);
+            String publicKeyPEM = new String(keyBytes, StandardCharsets.UTF_8);
+            publicKeyPEM = publicKeyPEM
+                    .replaceAll("-----BEGIN PUBLIC KEY-----", "")
+                    .replaceAll("-----END PUBLIC KEY-----", "")
+                    .replaceAll("\\s", "");
+            byte[] decodedKey = java.util.Base64.getDecoder().decode(publicKeyPEM);
+            X509EncodedKeySpec endCode = new X509EncodedKeySpec(decodedKey);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            return keyFactory.generatePublic(spec);
+            return  keyFactory.generatePublic(endCode);
         } catch (Exception e) {
             throw new IOException("Failed to load public key", e);
         }
     }
 
-    private PrivateKey loadPrivateKey() throws IOException {
+    private PrivateKey loadPrivateKeyFromResource() throws IOException {
         try (InputStream inputStream = new ClassPathResource("keystore/private_key.pem").getInputStream()) {
             byte[] keyBytes = inputStream.readAllBytes();
-            PKCS8EncodedKeySpec spec = new PKCS8EncodedKeySpec(keyBytes);
+            String privateKeyPem = new String(keyBytes, StandardCharsets.UTF_8);
+            privateKeyPem = privateKeyPem
+                    .replaceAll("-----BEGIN PRIVATE KEY-----", "")
+                    .replaceAll("-----END PRIVATE KEY-----", "")
+                    .replaceAll("\\s", "");
+            byte[] decodedKey = java.util.Base64.getDecoder().decode(privateKeyPem);
+            PKCS8EncodedKeySpec endCode = new PKCS8EncodedKeySpec(decodedKey);
             KeyFactory keyFactory = KeyFactory.getInstance("RSA");
-            return keyFactory.generatePrivate(spec);
+            return keyFactory.generatePrivate(endCode);
         } catch (Exception e) {
             throw new IOException("Failed to load private key", e);
         }
+
     }
 }

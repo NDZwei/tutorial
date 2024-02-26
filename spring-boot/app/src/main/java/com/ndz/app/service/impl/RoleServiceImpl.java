@@ -97,7 +97,7 @@ public class RoleServiceImpl implements RoleService {
         String whereClause = " where (1=1) ";
         String orderBy = " order by e.updatedAt desc";
         if (StringUtils.hasText(dto.getTextSearch())) {
-            whereClause += " e.name like :textSearch or e.description like :textSearch";
+            whereClause += " and e.name like :textSearch or e.description like :textSearch";
         }
         hqlSelect += whereClause + orderBy;
         hqlCount += whereClause;
