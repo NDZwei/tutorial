@@ -27,11 +27,26 @@ public class EnumClass {
         }
     };
 
-    public enum EmailType {
+    public enum EMAIL_TYPE {
         REGISTER, FORGOT_PASSWORD, NOTICE
     }
 
     public enum STATUS_SEND {
         SUCCESS, ERROR,
+    }
+
+    public enum SERVER_URL {
+        LOCALHOST("http://localhost:8090/api"),
+        IP_ADDRESS("http://192.168.1.235:8090/api"),
+        ;
+        private String url;
+
+        SERVER_URL(String url) {
+            this.url = url;
+        }
+
+        public String getUrl() {
+            return url;
+        }
     }
 }

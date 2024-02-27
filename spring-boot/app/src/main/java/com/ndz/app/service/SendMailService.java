@@ -8,5 +8,5 @@ import com.ndz.app.entity.Notification;
     github: https://github.com/NDZwei
 */
 public interface SendMailService {
-    Boolean sendMailActiveAccount(Notification notification);
+    Boolean sendMailVerification(Notification notification);
 }
