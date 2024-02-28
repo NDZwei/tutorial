@@ -36,6 +36,9 @@ dependencies:
   # Use with the CupertinoIcons class for iOS style icons.
   cupertino_icons: ^1.0.2
   flutter_riverpod: ^2.4.10
+  dots_indicator: ^3.0.0
+  riverpod_generator: ^2.3.11
+  build_runner: ^2.4.8
 
 dev_dependencies:
   flutter_test:
@@ -58,6 +61,10 @@ flutter:
   # included with your application, so that you can use the icons in
   # the material Icons class.
   uses-material-design: true
+  assets:
+    - assets/images/
+    - assets/icons/
+    - assets/voice/
 
   # To add assets to your application, add an assets section, like this:
   # assets:
