@@ -1,6 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:river_pod_course_app/common/widgets/app_theme.dart';
 import 'package:river_pod_course_app/pages/welcome/welcome.dart';
+import 'package:river_pod_course_app/pages/sign_in/sign_in.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -13,11 +15,12 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
-      theme: ThemeData(
-        colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
-        useMaterial3: true,
-      ),
-      home: Welcome(),
+      theme: AppTheme.appThemeData,
+      initialRoute: "/",
+      routes: {
+        "/": (context) => Welcome(),
+        "/signIn": (context) => const SignIn(),
+      },
     );
   }
 }

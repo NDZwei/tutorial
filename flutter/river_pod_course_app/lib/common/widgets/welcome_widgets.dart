@@ -12,20 +12,21 @@ Widget appOnboardingPage({
   String title = "",
   String subtitle = "",
   required PageController controller,
+  required BuildContext context,
 }) {
   return Column(
     children: [
       Image.asset(imagePath, fit: BoxFit.fitWidth,),
       Container(
           margin: const EdgeInsets.only(top: 15),
-          child: textFontNormal(text: title, color: AppColors.primaryText, fontSize: 24)
+          child: textCustom(text: title, color: AppColors.primaryText, fontSize: 24)
       ),
       Container(
         margin: const EdgeInsets.only(top: 15),
         padding: const EdgeInsets.only(left: 30, right: 30),
-        child: textFontNormal(text: subtitle),
+        child: textCustom(text: subtitle),
       ),
-      nextButton(index: index, controller: controller)
+      nextButton(context: context, index: index, controller: controller)
     ],
   );
 }

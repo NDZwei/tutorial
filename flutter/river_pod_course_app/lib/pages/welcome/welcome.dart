@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:river_pod_course_app/common/utils/app_colors.dart';
 
-import '../../common/widgets/widget_custom.dart';
+import '../../common/widgets/welcome_widgets.dart';
 import 'notifier/welcome_notifier.dart';
 
 class Welcome extends ConsumerWidget {
@@ -33,25 +33,28 @@ class Welcome extends ConsumerWidget {
                 scrollDirection: Axis.horizontal,
                 children: [
                   appOnboardingPage(
-                      index: 1,
-                      controller: _controller,
-                      imagePath: "assets/images/reading.png",
-                      title: "First see learning",
-                      subtitle: "For get about of paper all knowledge in one learning"
+                    context: context,
+                    index: 1,
+                    controller: _controller,
+                    imagePath: "assets/images/reading.png",
+                    title: "First see learning",
+                    subtitle: "For get about of paper all knowledge in one learning"
                   ),
                   appOnboardingPage(
-                      index: 2,
-                      controller: _controller,
-                      imagePath: "assets/images/boy.png",
-                      title: "Connect with everyone",
-                      subtitle: "Always keep in touch with your tutor and friends. Let's get connected"
+                    context: context,
+                    index: 2,
+                    controller: _controller,
+                    imagePath: "assets/images/boy.png",
+                    title: "Connect with everyone",
+                    subtitle: "Always keep in touch with your tutor and friends. Let's get connected"
                   ),
                   appOnboardingPage(
-                      index: 3,
-                      controller: _controller,
-                      imagePath: "assets/images/man.png",
-                      title: "Always faceted learning",
-                      subtitle: "Anywhere, anytime. The time is at your discretion. So study wherever you can"
+                    context: context,
+                    index: 3,
+                    controller: _controller,
+                    imagePath: "assets/images/man.png",
+                    title: "Always faceted learning",
+                    subtitle: "Anywhere, anytime. The time is at your discretion. So study wherever you can"
                   ),
                 ],
               ),
