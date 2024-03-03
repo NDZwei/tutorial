@@ -1,8 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
 import 'package:river_pod_course_app/common/widgets/app_theme.dart';
-import 'package:river_pod_course_app/pages/welcome/welcome.dart';
 import 'package:river_pod_course_app/pages/sign_in/sign_in.dart';
+import 'package:river_pod_course_app/pages/sign_up/sign_up.dart';
+import 'package:river_pod_course_app/pages/welcome/welcome.dart';
 
 void main() {
   runApp(const ProviderScope(child: MyApp()));
@@ -16,10 +17,10 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: AppTheme.appThemeData,
-      initialRoute: "/",
       routes: {
         "/": (context) => Welcome(),
         "/signIn": (context) => const SignIn(),
+        "/register": (context) => const SignUp(),
       },
     );
   }

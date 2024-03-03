@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:river_pod_course_app/common/utils/app_colors.dart';
 import 'package:river_pod_course_app/common/widgets/sign_in_widgets.dart';
 import 'package:river_pod_course_app/common/widgets/text_custom.dart';
+import 'package:river_pod_course_app/pages/sign_up/sign_up.dart';
 
 Widget nextButton({
   index = 1,
@@ -53,20 +54,10 @@ Widget nextButton({
    double width = double.infinity,
    bool isLogin = false,
    BuildContext? context,
+   void Function()? func
 }) {
   return GestureDetector(
-    onTap: () {
-      Navigator.push(
-          context!,
-          MaterialPageRoute(builder: (context) => Scaffold(
-            appBar: buildAppbar(),
-            body: Container(
-              color: Colors.white,
-            ),
-            backgroundColor: Colors.white,
-          ))
-      );
-    },
+    onTap: func,
     child: Container(
       child: Center(
         child: textCustom(

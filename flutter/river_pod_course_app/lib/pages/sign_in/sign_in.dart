@@ -12,7 +12,7 @@ class SignIn extends StatelessWidget {
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
-          appBar: buildAppbar(),
+          appBar: buildAppbar(text: "Login"),
           backgroundColor: Colors.white,
           body: SingleChildScrollView(
             child: Column(
@@ -51,8 +51,12 @@ class SignIn extends StatelessWidget {
                   margin: const EdgeInsets.symmetric(horizontal: 25),
                   child: appButton(
                     context: context,
-                    buttonText: "Sing up",
-                    isLogin: false),
+                    buttonText: "Register",
+                    isLogin: false,
+                    func: () {
+                      Navigator.pushNamed(context, "/register");
+                    }
+                  ),
                 )
               ],
             ),

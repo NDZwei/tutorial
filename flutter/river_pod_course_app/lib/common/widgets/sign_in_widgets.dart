@@ -3,10 +3,10 @@ import 'package:flutter/material.dart';
 import 'package:river_pod_course_app/common/utils/app_colors.dart';
 import 'package:river_pod_course_app/common/widgets/text_custom.dart';
 
-AppBar buildAppbar() {
+AppBar buildAppbar({String text = ""}) {
   return AppBar(
     centerTitle: true,
-    title: textCustom(text: "Login", color: AppColors.primaryText, fontSize: 24),
+    title: textCustom(text: text, color: AppColors.primaryText, fontSize: 24),
     bottom: PreferredSize(
       child: Container(
         color: Colors.grey.withOpacity(0.3),
@@ -57,7 +57,8 @@ Widget textFieldInput({
   bool isPassword = false,
   Color color = AppColors.primaryBackground,
   double radius = 15,
-  Color borderColor = AppColors.primaryFourElementText
+  Color borderColor = AppColors.primaryFourElementText,
+  void Function(String value)? func
 }) {
   return Container(
     padding: const EdgeInsets.only(left: 25, right: 25),
@@ -84,6 +85,7 @@ Widget textFieldInput({
                  width: 320,
                  height: 50,
                  child: TextField(
+                   onChanged: (value)=>func!(value),
                    keyboardType: TextInputType.multiline,
                    decoration: InputDecoration(
                      hintText: hintText,
@@ -110,9 +112,6 @@ Widget textFieldInput({
                          )
                      )
                    ),
-                   onChanged: (value) {
-
-                   },
                    maxLines: 1,
                    autofocus: false,
                    obscureText: isPassword,

@@ -4,11 +4,12 @@ import 'package:river_pod_course_app/common/utils/app_colors.dart';
 Widget textCustom({
   String text = "",
   double fontSize = 16,
-  Color color = AppColors.primaryThreeElementText
+  Color color = AppColors.primaryThreeElementText,
+  bool isCenter = true
 }) {
   return Text(
     text,
-    textAlign: TextAlign.center,
+    textAlign: isCenter ? TextAlign.center : TextAlign.start,
     style: TextStyle(
         color: color,
         fontSize: fontSize,
