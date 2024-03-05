@@ -1,10 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_riverpod/flutter_riverpod.dart';
+import 'package:river_pod_course_app/common/app_loader/app_loader.dart';
 import 'package:river_pod_course_app/common/controller/sign_up_controller.dart';
+import 'package:river_pod_course_app/common/utils/app_colors.dart';
 import 'package:river_pod_course_app/common/widgets/button_custom.dart';
 import 'package:river_pod_course_app/common/widgets/sign_in_widgets.dart';
 import 'package:river_pod_course_app/common/widgets/text_custom.dart';
-import 'package:river_pod_course_app/pages/sign_in/sign_in.dart';
 import 'package:river_pod_course_app/pages/sign_up/notifier/register_notifier.dart';
 
 
@@ -27,13 +28,15 @@ class _SignUpState extends ConsumerState<SignUp> {
   @override
   Widget build(BuildContext context) {
     final registerProvider = ref.watch(registerNotifierProvider);
+    final loader = ref.watch(appLoaderProvider);
     return Container(
       color: Colors.white,
       child: SafeArea(
         child: Scaffold(
           appBar: buildAppbar(text: "Sign up"),
           backgroundColor: Colors.white,
-          body: SingleChildScrollView(
+          body: loader == false ?
+          SingleChildScrollView(
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
@@ -95,16 +98,17 @@ class _SignUpState extends ConsumerState<SignUp> {
                     context: context,
                     buttonText: "Register",
                     isLogin: true,
-                    func: () {
-                      _controller.handleSignUp();
-                      // Navigator.push(
-                      //     context,
-                      //     MaterialPageRoute(builder: (context) => const SignIn())
-                      // );
-                    }
+                    func: () => _controller.handleSignUp()
                   ),
                 ),
               ],
+            ),
+          )
+          :
+          const Center(
+            child: CircularProgressIndicator(
+              backgroundColor: Colors.blue,
+              color: AppColors.primaryElement,
             ),
           ),
         ),
