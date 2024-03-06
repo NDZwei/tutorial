@@ -58,6 +58,7 @@ Widget textFieldInput({
   Color color = AppColors.primaryBackground,
   double radius = 15,
   Color borderColor = AppColors.primaryFourElementText,
+  TextEditingController? controller,
   void Function(String value)? func
 }) {
   return Container(
@@ -85,6 +86,7 @@ Widget textFieldInput({
                  width: 320,
                  height: 50,
                  child: TextField(
+                   controller: controller,
                    onChanged: (value)=>func!(value),
                    keyboardType: TextInputType.multiline,
                    decoration: InputDecoration(
