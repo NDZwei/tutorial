@@ -61,7 +61,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                 .sessionManagement().sessionCreationPolicy(STATELESS).and()
                 .authorizeHttpRequests()
                 .antMatchers("/oauth/token/**").permitAll()
-                .antMatchers("/public/**").permitAll()
+                .antMatchers("/api/public/**").permitAll()
                 .anyRequest().authenticated();
         http.addFilterBefore(corsFilter(), CorsFilter.class);
         http.addFilter(authenticationFilter);
