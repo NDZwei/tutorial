@@ -114,6 +114,5 @@ public class AuthenticationFilter extends UsernamePasswordAuthenticationFilter {
         } catch (Exception e) {
             throw new IOException("Failed to load private key", e);
         }
-
     }
 }

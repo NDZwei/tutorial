@@ -25,9 +25,26 @@ public class PublicController extends BaseController {
     public BaseResponse getAll() {
         try {
             List<AdministrativeUnitDto> data = administrativeUnitService.getAll();
+    private static final Logger logger = LoggerFactory.getLogger(RoleController.class);
+    @Resource
+    private UserService userService;
+
+    @Resource
+    private NotificationService notificationService;
+
+    @PostMapping(value = "/register")
+    private BaseResponse register(@RequestBody UserDto dto) {
+        try {
+            UserDto data = userService.register(dto);
+
             return getResponse200(data);
         } catch (Exception e) {
             return getResponse500(e.getMessage());
         }
+    }
+
+    @GetMapping(value = "/verification-email")
+    private void verificationEmail(@RequestParam String email, @RequestParam String emailToken) {
+        notificationService.verificationEmail(email, emailToken);
     }
 }

@@ -23,8 +23,6 @@ public interface UserService {
 
     UserDto saveUser(UserDto dto);
 
-    Boolean activeMail(UUID id);
-
     Boolean delete(Long id);
 
     Boolean voided(Long id);

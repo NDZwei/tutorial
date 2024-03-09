@@ -25,4 +25,6 @@ public interface NotificationService {
     Boolean delete(Long id);
 
     Page<NotificationDto> getPage(BaseSearch dto);
+
+    void verificationEmail(String email, String token);
 }

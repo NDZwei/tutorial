@@ -19,7 +19,7 @@ public class NotificationDto extends BaseDto {
     private String content;
     private String email;
     private String displayName;
-    private EnumClass.EmailType emailType;
+    private EnumClass.EMAIL_TYPE emailType;
     private EnumClass.STATUS_SEND statusSendMail;
 
     public NotificationDto(Notification entity) {

@@ -28,12 +28,15 @@ public class Notification extends BaseEntity {
     @Column(name = "email")
     private String email;
 
-    @Column(name = "display_namew")
+    @Column(name = "display_name")
     private String displayName;
+
+    @Column(name = "email_token")
+    private String emailToken;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "type")
-    private EnumClass.EmailType emailType;
+    private EnumClass.EMAIL_TYPE emailType;
 
     @Enumerated(EnumType.STRING)
     @Column(name = "status_send")
@@ -41,4 +44,10 @@ public class Notification extends BaseEntity {
 
     @Column(name = "is_seen")
     private Boolean isSeen = false;
+
+    public Notification(String email, String emailToken, String displayName) {
+        this.email = email;
+        this.emailToken = emailToken;
+        this.displayName = displayName;
+    }
 }

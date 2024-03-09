@@ -2,12 +2,15 @@ package com.ndz.app.service.impl;
 
 import com.ndz.app.dto.RoleDto;
 import com.ndz.app.dto.UserDto;
+import com.ndz.app.entity.Notification;
+import com.ndz.app.entity.Person;
 import com.ndz.app.entity.Role;
 import com.ndz.app.entity.User;
 import com.ndz.app.repository.RoleRepository;
 import com.ndz.app.repository.UserRepository;
 import com.ndz.app.service.SendMailService;
 import com.ndz.app.service.UserService;
+import com.ndz.app.utils.EnumClass;
 import com.ndz.app.utils.NDZUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
@@ -19,8 +22,6 @@ import org.springframework.util.CollectionUtils;
 import org.springframework.util.ObjectUtils;
 
 import javax.annotation.Resource;
-import javax.persistence.EntityManager;
-import javax.persistence.PersistenceContext;
 import java.util.*;
 import java.util.stream.Collectors;
 
@@ -94,6 +95,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             return null;
         }
         User user = new User();
+        Person person = new Person();
+        person.setDisplayName(dto.getDisplayName());
         if(dto.getPassword() != null && dto.getConfirmPassword() != null
                 && dto.getPassword().equals(dto.getConfirmPassword())) {
             user.setPassword(NDZUtils.getHashPassword(dto.getPassword()));
@@ -102,10 +105,23 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         }
         user.setUsername(dto.getUsername());
         user.setEmail(dto.getEmail());
+        List<Role> roles = new ArrayList<>();
+        Role roleUser = roleRepository.getRoleByName(EnumClass.RoleEnum.ROLE_USER.name());
+        if(roleUser != null) {
+            roles.add(roleUser);
+        }
+        user.setRoles(roles);
+        user.setPerson(person);
+        person.setUser(user);
         // send mail active
-
-        user = repository.save(user);
-        return new UserDto(user);
+        boolean resultSendMail = sendMailService.sendMailVerification(
+                new Notification(user.getEmail(), UUID.randomUUID().toString(), dto.getDisplayName())
+        );
+        if(resultSendMail) {
+            user = repository.save(user);
+            return new UserDto(user);
+        }
+        return null;
     }
 
     @Override
@@ -114,6 +130,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
             return null;
         }
         User user = null;
+        Person person = null;
         boolean isNew = false;
         Boolean isExitsUsername = this.checkUsername(dto.getUsername());
         if(isExitsUsername) {
@@ -129,6 +146,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         if(user == null) {
             user = new User();
             isNew = true;
+        }
+        person = user.getPerson();
+        if(person == null) {
+            person = new Person();
         }
         if(isNew && dto.getPassword() != null && dto.getConfirmPassword() != null
                 && dto.getPassword().equals(dto.getConfirmPassword())) {
@@ -156,13 +177,10 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         } else {
             user.getRoles().clear();
         }
+        user.setPerson(person);
+        person.setUser(user);
         user = repository.save(user);
         return new UserDto(user);
-    }
-
-    @Override
-    public Boolean activeMail(UUID id) {
-        return null;
     }
 
     @Override

@@ -2,15 +2,20 @@ package com.ndz.app.service.impl;
 
 import com.ndz.app.dto.BaseSearch;
 import com.ndz.app.dto.NotificationDto;
+import com.ndz.app.dto.UserDto;
 import com.ndz.app.entity.Notification;
+import com.ndz.app.entity.User;
 import com.ndz.app.repository.NotificationRepository;
+import com.ndz.app.repository.UserRepository;
 import com.ndz.app.service.NotificationService;
+import com.ndz.app.service.UserService;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageImpl;
 import org.springframework.data.domain.PageRequest;
 import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
+import org.springframework.util.CollectionUtils;
 import org.springframework.util.StringUtils;
 
 import javax.annotation.Resource;
@@ -29,6 +34,9 @@ import java.util.List;
 public class NotificationServiceImpl implements NotificationService {
     @Resource
     private NotificationRepository repository;
+
+    @Resource
+    private UserRepository userRepository;
 
     @PersistenceContext
     private EntityManager manager;
@@ -160,5 +168,15 @@ public class NotificationServiceImpl implements NotificationService {
         long count = (long) queryCount.getSingleResult();
         Pageable pageable = PageRequest.of(pageIndex, pageSize);
         return new PageImpl<>(results, pageable, count);
+    }
+
+    @Override
+    public void verificationEmail(String email, String token) {
+        List<Notification> notifications = repository.getByEmailAndToken(email, token);
+        User userByEmail = userRepository.getUserByEmail(email);
+        if(!CollectionUtils.isEmpty(notifications) && userByEmail != null && !userByEmail.getIsActive()) {
+            userByEmail.setIsActive(true);
+            userRepository.save(userByEmail);
+        }
     }
 }

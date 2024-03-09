@@ -24,6 +24,7 @@ public class UserDto extends BaseDto {
     private String oldPassword;
     private String email;
     private Boolean isActive;
+    private String displayName;
     private List<RoleDto> roles = new ArrayList<>();
 
     public UserDto(User user) {

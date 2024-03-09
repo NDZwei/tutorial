@@ -33,6 +33,9 @@ public class User extends BaseEntity {
     @Column(name = "is_active")
     private Boolean isActive = false;
 
+    @OneToOne(mappedBy = "user", fetch = FetchType.EAGER, cascade = CascadeType.ALL)
+    private Person person;
+
     @ManyToMany(fetch = FetchType.EAGER)
     @Fetch(FetchMode.SELECT)
     @JoinTable(name = "tbl_user_role",
