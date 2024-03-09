@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "503888542860",
+    "project_id": "course-app-9a1dc",
+    "storage_bucket": "course-app-9a1dc.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:503888542860:android:4d3e290873b5a455554fa9",
+        "android_client_info": {
+          "package_name": "com.ndz.river_pod_course_app"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBUqKBdwRyAsORDKOl6-jdr7J1MZ-_1G5k"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

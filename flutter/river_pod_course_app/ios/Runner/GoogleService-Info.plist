@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>API_KEY</key>
+	<string>AIzaSyDtJbd5522AfbRTqv_ZL_9L3obYbruK5Ms</string>
+	<key>GCM_SENDER_ID</key>
+	<string>503888542860</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.ndz.riverPodCourseApp</string>
+	<key>PROJECT_ID</key>
+	<string>course-app-9a1dc</string>
+	<key>STORAGE_BUCKET</key>
+	<string>course-app-9a1dc.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<false></false>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<true></true>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:503888542860:ios:ff93794a3a9c3bb1554fa9</string>
+</dict>
+</plist>
