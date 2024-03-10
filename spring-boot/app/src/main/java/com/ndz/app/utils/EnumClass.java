@@ -49,4 +49,20 @@ public class EnumClass {
             return url;
         }
     }
+
+    public enum ADMINISTRATIVE_UNIT_LEVEL {
+        PROVINCE(1),
+        DISTRICT(2),
+        COMMUNE(3)
+        ;
+        private Integer level;
+
+        ADMINISTRATIVE_UNIT_LEVEL(Integer level) {
+            this.level = level;
+        }
+
+        public Integer getLevel() {
+            return level;
+        }
+    }
 }

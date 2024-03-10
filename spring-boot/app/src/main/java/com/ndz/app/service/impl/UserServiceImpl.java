@@ -12,6 +12,7 @@ import com.ndz.app.service.SendMailService;
 import com.ndz.app.service.UserService;
 import com.ndz.app.utils.EnumClass;
 import com.ndz.app.utils.NDZUtils;
+import com.ndz.app.utils.SecurityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;
@@ -99,7 +100,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         person.setDisplayName(dto.getDisplayName());
         if(dto.getPassword() != null && dto.getConfirmPassword() != null
                 && dto.getPassword().equals(dto.getConfirmPassword())) {
-            user.setPassword(NDZUtils.getHashPassword(dto.getPassword()));
+            user.setPassword(SecurityUtils.getHashPassword(dto.getPassword()));
         } else {
             return null;
         }
@@ -153,7 +154,7 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         }
         if(isNew && dto.getPassword() != null && dto.getConfirmPassword() != null
                 && dto.getPassword().equals(dto.getConfirmPassword())) {
-            user.setPassword(NDZUtils.getHashPassword(dto.getPassword()));
+            user.setPassword(SecurityUtils.getHashPassword(dto.getPassword()));
         }
         user.setUsername(dto.getUsername());
         user.setEmail(dto.getEmail());
@@ -245,8 +246,8 @@ public class UserServiceImpl implements UserDetailsService, UserService {
         User user = repository.findById(dto.getId()).orElse(null);
         if(user != null && dto.getOldPassword() != null && dto.getPassword() != null && dto.getConfirmPassword() != null
                 && dto.getPassword().equals(dto.getConfirmPassword())
-                && NDZUtils.matchesPassword(user.getPassword(), dto.getOldPassword())) {
-            user.setPassword(NDZUtils.getHashPassword(dto.getPassword()));
+                && SecurityUtils.matchesPassword(user.getPassword(), dto.getOldPassword())) {
+            user.setPassword(SecurityUtils.getHashPassword(dto.getPassword()));
             repository.save(user);
             return true;
         }

@@ -36,7 +36,7 @@ public class AdministrativeUnit extends BaseEntity {
     @Column(name = "parent_id", insertable = false, updatable = false)
     private Long parentId;
 
-    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY, cascade = CascadeType.ALL, orphanRemoval = true)
+    @OneToMany(mappedBy = "parent", fetch = FetchType.LAZY)
     @OrderBy("name")
     private Set<AdministrativeUnit> children = new HashSet<>();
 }

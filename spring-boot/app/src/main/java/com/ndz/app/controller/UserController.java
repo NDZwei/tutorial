@@ -1,7 +1,6 @@
 package com.ndz.app.controller;
 
 import com.ndz.app.dto.BaseResponse;
-import com.ndz.app.dto.RoleDto;
 import com.ndz.app.dto.UserDto;
 import com.ndz.app.service.UserService;
 import org.slf4j.Logger;

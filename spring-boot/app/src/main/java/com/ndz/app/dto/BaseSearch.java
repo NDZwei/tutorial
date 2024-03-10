@@ -20,4 +20,5 @@ public class BaseSearch {
     private String emailType;
     private String statusSendMail;
     private Integer numberRecord;
+    private Long parentId;
 }
