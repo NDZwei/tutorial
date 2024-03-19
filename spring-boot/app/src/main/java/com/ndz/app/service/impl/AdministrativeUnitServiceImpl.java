@@ -67,6 +67,7 @@ public class AdministrativeUnitServiceImpl implements AdministrativeUnitService 
         if(administrativeUnit == null) {
             administrativeUnit = new AdministrativeUnit();
         }
+        administrativeUnit.setCode(dto.getCode());
         administrativeUnit.setName(dto.getName());
         administrativeUnit.setLevel(dto.getLevel());
         AdministrativeUnit parent = null;

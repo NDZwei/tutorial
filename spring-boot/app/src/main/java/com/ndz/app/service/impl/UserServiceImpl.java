@@ -11,7 +11,6 @@ import com.ndz.app.repository.UserRepository;
 import com.ndz.app.service.SendMailService;
 import com.ndz.app.service.UserService;
 import com.ndz.app.utils.EnumClass;
-import com.ndz.app.utils.NDZUtils;
 import com.ndz.app.utils.SecurityUtils;
 import org.springframework.security.core.authority.SimpleGrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;

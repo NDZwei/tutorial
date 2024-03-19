@@ -6,17 +6,21 @@ package com.ndz.app.scheduled;
     github: https://github.com/NDZwei
 */
 
+import com.ndz.app.service.SyncDataService;
 import org.springframework.boot.autoconfigure.condition.ConditionalOnProperty;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.scheduling.annotation.EnableScheduling;
 import org.springframework.scheduling.annotation.Scheduled;
 
+import javax.annotation.Resource;
 import java.util.Date;
 
 @Configuration
 @EnableScheduling
 @ConditionalOnProperty(name = "scheduler.enabled", matchIfMissing = false)
 public class NDZScheduled {
+    @Resource
+    private SyncDataService syncDataService;
 
     // fixedRate: Chỉ định thời gian giữa các lần thực thi của scheduled
     // fixedDelay: Chỉ định khoảng thời gian giữa lần kết thúc của scheduled và bắt đầu scheduled tiếp theo, tính bằng mili giây.

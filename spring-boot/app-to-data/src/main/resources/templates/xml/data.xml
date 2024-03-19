@@ -1,0 +1,227 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<root>
+	<Ethnics>
+		<code>01</code>
+		<name>Kinh</name>
+	</Ethnics>
+	<Ethnics>
+		<code>02</code>
+		<name>Tày</name>
+	</Ethnics>
+	<Ethnics>
+		<code>03</code>
+		<name>Thái</name>
+	</Ethnics>
+	<Ethnics>
+		<code>04</code>
+		<name>Hoa</name>
+	</Ethnics>
+	<Ethnics>
+		<code>05</code>
+		<name>Khmer</name>
+	</Ethnics>
+	<Ethnics>
+		<code>06</code>
+		<name>Mường</name>
+	</Ethnics>
+	<Ethnics>
+		<code>07</code>
+		<name>Nùng</name>
+	</Ethnics>
+	<Ethnics>
+		<code>08</code>
+		<name>Mông</name>
+	</Ethnics>
+	<Ethnics>
+		<code>09</code>
+		<name>Dao</name>
+	</Ethnics>
+	<Ethnics>
+		<code>10</code>
+		<name>Gia Rai</name>
+	</Ethnics>
+	<Ethnics>
+		<code>11</code>
+		<name>Ngái</name>
+	</Ethnics>
+	<Ethnics>
+		<code>12</code>
+		<name>Ê Đê</name>
+	</Ethnics>
+	<Ethnics>
+		<code>13</code>
+		<name>Ba Na</name>
+	</Ethnics>
+	<Ethnics>
+		<code>14</code>
+		<name>Xơ Đăng</name>
+	</Ethnics>
+	<Ethnics>
+		<code>15</code>
+		<name>Sán Chay</name>
+	</Ethnics>
+	<Ethnics>
+		<code>16</code>
+		<name>Cơ Ho</name>
+	</Ethnics>
+	<Ethnics>
+		<code>17</code>
+		<name>Chăm</name>
+	</Ethnics>
+	<Ethnics>
+		<code>18</code>
+		<name>Sán Dìu</name>
+	</Ethnics>
+	<Ethnics>
+		<code>19</code>
+		<name>Hrê</name>
+	</Ethnics>
+	<Ethnics>
+		<code>20</code>
+		<name>Mnông</name>
+	</Ethnics>
+	<Ethnics>
+		<code>21</code>
+		<name>Raglay</name>
+	</Ethnics>
+	<Ethnics>
+		<code>22</code>
+		<name>Xtiêng</name>
+	</Ethnics>
+	<Ethnics>
+		<code>23</code>
+		<name>Bru Vân Kiều</name>
+	</Ethnics>
+	<Ethnics>
+		<code>24</code>
+		<name>Thổ</name>
+	</Ethnics>
+	<Ethnics>
+		<code>25</code>
+		<name>Giáy</name>
+	</Ethnics>
+	<Ethnics>
+		<code>26</code>
+		<name>Cơ Tu</name>
+	</Ethnics>
+	<Ethnics>
+		<code>27</code>
+		<name>Gié Triêng</name>
+	</Ethnics>
+	<Ethnics>
+		<code>28</code>
+		<name>Mạ</name>
+	</Ethnics>
+	<Ethnics>
+		<code>29</code>
+		<name>Khơ mú</name>
+	</Ethnics>
+	<Ethnics>
+		<code>30</code>
+		<name>Co</name>
+	</Ethnics>
+	<Ethnics>
+		<code>31</code>
+		<name>Tà Ôi</name>
+	</Ethnics>
+	<Ethnics>
+		<code>32</code>
+		<name>Chơ Ro</name>
+	</Ethnics>
+	<Ethnics>
+		<code>33</code>
+		<name>Kháng</name>
+	</Ethnics>
+	<Ethnics>
+		<code>34</code>
+		<name>Xinh Mun</name>
+	</Ethnics>
+	<Ethnics>
+		<code>35</code>
+		<name>Hà Nhì</name>
+	</Ethnics>
+	<Ethnics>
+		<code>36</code>
+		<name>Chu Ru</name>
+	</Ethnics>
+	<Ethnics>
+		<code>37</code>
+		<name>Lào</name>
+	</Ethnics>
+	<Ethnics>
+		<code>38</code>
+		<name>La Chí</name>
+	</Ethnics>
+	<Ethnics>
+		<code>39</code>
+		<name>La Ha</name>
+	</Ethnics>
+	<Ethnics>
+		<code>40</code>
+		<name>Phù Lá</name>
+	</Ethnics>
+	<Ethnics>
+		<code>41</code>
+		<name>La Hủ</name>
+	</Ethnics>
+	<Ethnics>
+		<code>42</code>
+		<name>Lự</name>
+	</Ethnics>
+	<Ethnics>
+		<code>43</code>
+		<name>Lô Lô</name>
+	</Ethnics>
+	<Ethnics>
+		<code>44</code>
+		<name>Chứt</name>
+	</Ethnics>
+	<Ethnics>
+		<code>45</code>
+		<name>Mảng</name>
+	</Ethnics>
+	<Ethnics>
+		<code>46</code>
+		<name>Pà Thẻn</name>
+	</Ethnics>
+	<Ethnics>
+		<code>47</code>
+		<name>Cơ Lao</name>
+	</Ethnics>
+	<Ethnics>
+		<code>48</code>
+		<name>Cống</name>
+	</Ethnics>
+	<Ethnics>
+		<code>49</code>
+		<name>Bố Y</name>
+	</Ethnics>
+	<Ethnics>
+		<code>50</code>
+		<name>Si La</name>
+	</Ethnics>
+	<Ethnics>
+		<code>51</code>
+		<name>Pu Péo</name>
+	</Ethnics>
+	<Ethnics>
+		<code>52</code>
+		<name>Brâu</name>
+	</Ethnics>
+	<Ethnics>
+		<code>53</code>
+		<name>Ơ Đu</name>
+	</Ethnics>
+	<Ethnics>
+		<code>54</code>
+		<name>Rơ Măm</name>
+	</Ethnics>
+	<Ethnics>
+		<code>55</code>
+		<name>Người nước ngoài</name>
+	</Ethnics>
+	<Ethnics>
+		<code>56</code>
+		<name>Không xác định</name>
+	</Ethnics>
+</root>
